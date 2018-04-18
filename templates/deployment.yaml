@@ -1,9 +1,9 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ template "kubecon.fullname" . }}
+  name: {{ .Chart.Name }}
   labels:
-    app: {{ template "kubecon.name" . }}
+    app: {{ .Chart.Name }}
     chart: {{ template "kubecon.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -11,12 +11,12 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "kubecon.name" . }}
+      app: {{ .Chart.Name }}
       release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "kubecon.name" . }}
+        app: {{ .Chart.Name }}
         release: {{ .Release.Name }}
     spec:
       containers:
